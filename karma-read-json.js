@@ -5,21 +5,20 @@
         var xhr = new XMLHttpRequest();
         var json = null;
 
-        xhr.open("GET", url, false);
+        xhr.open('GET', url, false);
 
         xhr.onload = function() {
             if (xhr.readyState === 4) {
-                console.log(url);
                 if (xhr.status === 200) {
                     json = JSON.parse(xhr.responseText);
                 } else {
-                    console.error('readJSON //', xhr.statusText);
+                    console.error('readJSON - ', url, xhr.statusText);
                 }
             }
         };
 
         xhr.onerror = function() {
-            console.error('readJSON // ', xhr.statusText);
+            console.error('readJSON - ', url, xhr.statusText);
         };
 
         xhr.send(null);

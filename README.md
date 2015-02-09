@@ -1,29 +1,30 @@
-# Karma-Read-JSON
-Karma helper function to make reading JSON files easier
+# Karma-JSON-Reader
+Helper function for Karma that makes reading JSON files easier
 
 ## Install
 
-`bower install karma-read-json`
+`bower install karma-json-reader`
 
 ## Usage
 
-1. Put karma-read-json.js in your Karma files, Example:
+1. Include karma-json-reader.js in your karma.conf.js.
 
         files = [
-        ...
-        'bower_components/karma-read-json/karma-read-json.js',
-        ...
+            ...
+            'bower_components/karma-read-json/karma-json-reader.js',
+            ...
         ]
 
-2. Make sure your JSON is being served by Karma, Example:
+2. Include your JSON data in your karma.conf.js.
 
         files = [
-        ...
-        {pattern: 'json/**/*.json', included: false},
-        ...
+            ...
+            { pattern: 'test/data/*.json', watched: true, served: true, included: false },
+            ...
         ]
 
-3. Use the `readJSON` function in your tests. Example:
+3. Use `KarmaJSONReader` to get your JSON data.
 
-        var valid_respond = readJSON('json/foobar.json');
-        $httpBackend.whenGET(/.*/).respond(valid_respond);
+        var jsonReader = new KarmaJSONReader('path/to/json/files/');
+        var mockData = jsonReader.readJSON('mockData.json');
+        
